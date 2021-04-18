@@ -1,70 +1,52 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-void main() => runApp(BottomNavigationBar123());
 
-class BottomNavigationBar123 extends StatefulWidget {
-  @override
-  _BottomNavigationBarState123 createState() => _BottomNavigationBarState123();
+void main() {
+  runApp(Drawer123());
 }
 
-class _BottomNavigationBarState123 extends State<BottomNavigationBar123> {
-  int currentIndex = 0;
+class Drawer123 extends StatefulWidget {
+  @override
+  _Drawer123State createState() => _Drawer123State();
+}
 
+class _Drawer123State extends State<Drawer123> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(),
-        bottomNavigationBar:
-        BottomNavigationBar(items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.lock_clock), label: "thanh"),
-          BottomNavigationBarItem(icon: Icon(Icons.lock_clock), label: "thanh"),
-          BottomNavigationBarItem(icon: Icon(Icons.lock_clock), label: "thanh"),
-        ],
-          backgroundColor: Colors.greenAccent,
-          type: BottomNavigationBarType.fixed,
-          currentIndex: currentIndex,
-          onTap: (int index){
-            onTapHandel(index);
-          },
-        ),
-        body: LayoutBuilder(
-          builder: (context, constraint) {
-            if (MediaQuery
-                .of(context)
-                .orientation == Orientation.portrait && currentIndex == 0) {
-              return doc();
-            } else
-              return ngang();
-          },
-        ),
+        drawer: Drawer(
+          child: ListView(
+            children: [
+              DrawerHeader(child: Text("123")),
+              ListTile(
+                leading: Icon(Icons.message),
+                title: Text('Messages'),
+                onTap: (){Navigator.of(context).pop();},
+              ),
 
+              ListTile(
+                leading: Icon(Icons.message),
+                title: Text('Messages'),
+              ),
+
+              ListTile(
+                leading: Icon(Icons.message),
+                title: Text('Messages'),
+              )
+            ],
+          ),
+        ),
+        endDrawer: Drawer(),
+        body: Builder(
+          builder:(context) => Center(
+              child: ElevatedButton(
+                onPressed: () => Scaffold.of(context).openDrawer(),
+                child: Text("gọi drawer"),
+              )),
+        ),
       ),
     );
   }
-  void onTapHandel(int index){
-    setState(() {
-      this.currentIndex = index;
-    });
-  }
-}
-
-Widget doc() {
-  return Center(
-    child: Container(
-      width: 100,
-      height: 100,
-      color: Colors.red,
-    ),
-  );
-}
-
-Widget ngang() {
-  return Center(
-    child: Container(
-      width: 100,
-      height: 100,
-      color: Colors.blue,
-    ),
-  );
 }
