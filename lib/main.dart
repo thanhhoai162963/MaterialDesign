@@ -1,6 +1,4 @@
-import 'package:baitap_ui_flutter/person.dart';
-import 'package:baitap_ui_flutter/screen1.dart';
-import 'package:baitap_ui_flutter/screen2.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,54 +11,60 @@ class Drawer123 extends StatefulWidget {
 }
 
 class _Drawer123State extends State<Drawer123> {
-  String _information = 'No Information Yet';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(),
-        drawer: Drawer(
-          child: ListView(
-            children: [
-              DrawerHeader(child: Text("123")),
-              ListTile(
-                leading: Icon(Icons.message),
-                title: Text('Messages'),
-                onTap: () {},
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              actions: [
+                Text("thanh"),
+                Text("thanh"),
+              ],
+              leading: Text("123"),
+              title: Text("thanh"),
+              backgroundColor: Colors.greenAccent,
+              bottom: PreferredSize(
+                preferredSize: Size.fromHeight(150),
+                child: Container(),
               ),
-              ListTile(
-                leading: Icon(Icons.message),
-                title: Text('Messages'),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Icon(Icons.message),
-                title: Text('Messages'),
-              )
-            ],
-          ),
-        ),
-        endDrawer: Drawer(),
-        body: Builder(
-          builder: (context) => Center(
-              child: ElevatedButton(
-                child: Text(_information.toString()),
-                onPressed: () {
-                  Navigator.canPop(context);
-                },
-          )),
+              floating: true,
+              pinned: false,
+            ),
+            SliverList(delegate: SliverChildListDelegate([
+              ListTile(leading: Icon(Icons.volume_off), title: Text("Volume Off"),),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
+              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
+              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
+              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
+              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
+              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
+              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
+              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
+              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
+            ]))
+          ],
         ),
       ),
     );
   }
-  // void _returnData(context) async{
-  //   final result = await Navigator.push(context, MaterialPageRoute(builder: (context)=>Screen1()));
-  //   _updateData(result);
-  // }
-  // void _updateData(result){
-  //   setState(() {
-  //     _information = result;
-  //   });
-  // }
+
 }
 
