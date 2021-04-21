@@ -1,48 +1,59 @@
 import 'package:flutter/material.dart';
 
-void main(){
-  runApp(TabBar123());
+void main() {
+  runApp(TypesButton());
 }
 
-class TabBar123 extends StatefulWidget {
+class TypesButton extends StatefulWidget {
   @override
-  _TabBar123State createState() => _TabBar123State();
+  _TypesButtonState createState() => _TypesButtonState();
 }
 
-class _TabBar123State extends State<TabBar123> with TickerProviderStateMixin{
-  late TabController _tabController;
-  @override
-  void initState() {
-    _tabController = TabController(length: 4, vsync: this);
-    super.initState();
-  }
+class _TypesButtonState extends State<TypesButton> {
+  String dropdownValue = 'One';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          bottom: TabBar(
-            controller: _tabController,
-
-            tabs: [
-            Tab(child: Text("123"),),
-            Tab(child: Text("123"),),
-            Tab(child: Text("123"),),
-            Tab(child: Text("123"),),
-          ],
-          ),
-        ),
+        appBar: AppBar(),
         body: Container(
-          child: TabBarView(
-              controller: _tabController,
-              children: [
-            Text("123"),
-            Text("123"),
-            Text("123"),
-            Text("123"),
-          ]),
+            alignment: Alignment.center,
+            child: DropDown()
         ),
       ),
     );
   }
 }
+
+class DropDown extends StatefulWidget {
+  @override
+  _DropDownState createState() => _DropDownState();
+}
+
+class _DropDownState extends State<DropDown> {
+  int _dropDownValueDefault = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          DropdownButton<int>(
+            items: <int>[1,2,3,4,5].
+            map<DropdownMenuItem<int>>((e) => DropdownMenuItem<int>(value: e,child: Text('$e'))).toList(),
+            value: _dropDownValueDefault,
+            onChanged: (int? newValue){
+              setState(() {
+                _dropDownValueDefault = newValue!;
+              });
+            },
+            icon: Icon(Icons.message),
+          ),
+          //Text(_dropDownValueDefault),
+        ],
+      ),
+    );
+  }
+}
+
