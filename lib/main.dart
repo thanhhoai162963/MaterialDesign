@@ -1,70 +1,48 @@
-
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(Drawer123());
+void main(){
+  runApp(TabBar123());
 }
 
-class Drawer123 extends StatefulWidget {
+class TabBar123 extends StatefulWidget {
   @override
-  _Drawer123State createState() => _Drawer123State();
+  _TabBar123State createState() => _TabBar123State();
 }
 
-class _Drawer123State extends State<Drawer123> {
+class _TabBar123State extends State<TabBar123> with TickerProviderStateMixin{
+  late TabController _tabController;
+  @override
+  void initState() {
+    _tabController = TabController(length: 4, vsync: this);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(),
-        body: CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              actions: [
-                Text("thanh"),
-                Text("thanh"),
-              ],
-              leading: Text("123"),
-              title: Text("thanh"),
-              backgroundColor: Colors.greenAccent,
-              bottom: PreferredSize(
-                preferredSize: Size.fromHeight(150),
-                child: Container(),
-              ),
-              floating: true,
-              pinned: false,
-            ),
-            SliverList(delegate: SliverChildListDelegate([
-              ListTile(leading: Icon(Icons.volume_off), title: Text("Volume Off"),),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_mute), title: Text("Volume Mute")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-              ListTile(leading: Icon(Icons.volume_down), title: Text("Volume Down")),
-            ]))
+        appBar: AppBar(
+          bottom: TabBar(
+            controller: _tabController,
+
+            tabs: [
+            Tab(child: Text("123"),),
+            Tab(child: Text("123"),),
+            Tab(child: Text("123"),),
+            Tab(child: Text("123"),),
           ],
+          ),
+        ),
+        body: Container(
+          child: TabBarView(
+              controller: _tabController,
+              children: [
+            Text("123"),
+            Text("123"),
+            Text("123"),
+            Text("123"),
+          ]),
         ),
       ),
     );
   }
-
 }
-

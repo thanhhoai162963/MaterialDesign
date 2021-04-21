@@ -14,7 +14,7 @@ import 'package:baitap_ui_flutter/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(Drawer123());
+    await tester.pumpWidget(TabBar123());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
