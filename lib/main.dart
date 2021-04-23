@@ -1,224 +1,247 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(TypesButton());
+  runApp(MyApp());
 }
 
-class TypesButton extends StatefulWidget {
+class MyApp extends StatefulWidget {
   @override
-  _TypesButtonState createState() => _TypesButtonState();
+  _MyAppState createState() => _MyAppState();
 }
 
-class _TypesButtonState extends State<TypesButton> {
-  int _currentIndex = 0;
-
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(),
-        floatingActionButton: Container(
-          margin: EdgeInsets.all(30),
-          child: FloatingActionButton(
-            onPressed: () {},
-            child: Container(
-                decoration: BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide(width: 10, color: Colors.white))),
-                child: Icon(Icons.add)),
-            elevation: 10,
-            hoverElevation: 2,
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
-        bottomNavigationBar: Container(
-          height: 200,
-          child: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              backgroundColor: Colors.pinkAccent,
-              currentIndex: _currentIndex,
-              items: [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.contacts),
-                  title: Text("Contacts"),
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.mail),
-                  title: Text("Emails"),
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  title: Text("Profile"),
-                )
-              ],
-              onTap: (int index) {
+        body: Switch123(),
+      ),
+    );
+  }
+}
+
+class CheckBox123 extends StatefulWidget {
+  @override
+  _CheckBox123State createState() => _CheckBox123State();
+}
+
+class _CheckBox123State extends State<CheckBox123> {
+  bool _defaultValue1 = false;
+  bool _defaultValue2 = false;
+  bool _defaultValue3 = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Checkbox(
+              value: _defaultValue1,
+              onChanged: (bool? newValue) {
                 setState(() {
-                  _currentIndex = index;
+                  _defaultValue1 = newValue!;
                 });
               }),
-        ),
-        body: PopUpMenu(),
-      ),
-    );
-  }
-
-  Widget Body() {
-    if (_currentIndex == 0) {
-      return Container(
-        color: Colors.yellow,
-        width: 100,
-        height: 100,
-      );
-    } else if (_currentIndex == 1) {
-      return Container(
-        color: Colors.blue,
-        width: 100,
-        height: 100,
-      );
-    } else
-      return Container(
-        color: Colors.yellow,
-        width: 100,
-        height: 100,
-      );
-  }
-}
-
-class DropDown extends StatefulWidget {
-  @override
-  _DropDownState createState() => _DropDownState();
-}
-
-class _DropDownState extends State<DropDown> {
-  int _dropDownValueDefault = 1;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          DropdownButton<int>(
-            items: <int>[1, 2, 3, 4, 5]
-                .map<DropdownMenuItem<int>>(
-                    (e) => DropdownMenuItem<int>(value: e, child: Text('$e')))
-                .toList(),
-            value: _dropDownValueDefault,
-            onChanged: (int? newValue) {
+          Checkbox(
+            value: _defaultValue2,
+            onChanged: (bool? newValue) {
               setState(() {
-                _dropDownValueDefault = newValue!;
+                _defaultValue2 = newValue!;
               });
             },
-            icon: Icon(Icons.message),
           ),
-          //Text(_dropDownValueDefault),
-        ],
-      ),
-    );
-  }
-}
-
-class FloatingButton extends StatefulWidget {
-  @override
-  _FloatingButtonState createState() => _FloatingButtonState();
-}
-
-class _FloatingButtonState extends State<FloatingButton> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-          child: Column(
-        children: <Widget>[
-          FloatingActionButton(onPressed: () {}),
-          FloatingActionButton.extended(onPressed: () {}, label: Text("thanh"))
-        ],
-      )),
-    );
-  }
-}
-
-class IconButton123 extends StatefulWidget {
-  @override
-  _IconButton123State createState() => _IconButton123State();
-}
-
-class _IconButton123State extends State<IconButton123> {
-  int number = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Column(
-        children: [
-          IconButton(
-            onPressed: () {
+          Checkbox(
+            value: _defaultValue3,
+            onChanged: (bool? newValue) {
               setState(() {
-                number += 10;
+                _defaultValue3 = newValue!;
               });
             },
-            icon: Icon(
-              Icons.volume_down,
-              size: 50,
-            ),
-          ),
-          Text('$number'),
+          )
         ],
       ),
     );
   }
 }
 
-class OutLineButton123 extends StatefulWidget {
+class DateTime123 extends StatefulWidget {
   @override
-  _OutLineButton123State createState() => _OutLineButton123State();
+  _DateTime123State createState() => _DateTime123State();
 }
 
-class _OutLineButton123State extends State<OutLineButton123> {
-  int a = 10;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: OutlinedButton(
-        onPressed: () {
-          setState(() {
-            a++;
-          });
-        },
-        child: Text("123"),
-      ),
-    );
-  }
-}
-
-class PopUpMenu extends StatefulWidget {
-  @override
-  _PopUpMenuState createState() => _PopUpMenuState();
-}
-
-class _PopUpMenuState extends State<PopUpMenu> {
-  var _selected;
-
+class _DateTime123State extends State<DateTime123> {
   @override
   Widget build(BuildContext context) {
     return Container(
         alignment: Alignment.center,
-        child: Column(
-          children: [
-            PopupMenuButton(
-                itemBuilder: (context) => <PopupMenuEntry>[
-                      PopupMenuItem(child: Text("123")),
-                      PopupMenuItem(child: Text("123")),
-                      PopupMenuItem(child: Text("123")),
-                      PopupMenuItem(child: Text("123")),
-                    ],
-              onSelected: _selected,
+        child: ElevatedButton(
+          onPressed: () {
+            _selectDate(context);
+          },
+          child: Text('Show DateTime Picker'),
+        ));
+  }
 
+  _selectDate(BuildContext context) async {
+    DateTime selectedDateTime = DateTime.now();
+
+    final DateTime picked = (await showDatePicker(
+      helpText: "thanh",
+      confirmText: "Yes",
+      cancelText: "No",
+      initialEntryMode: DatePickerEntryMode.input,
+      initialDatePickerMode: DatePickerMode.year,
+      errorFormatText: 'Enter valid date',
+      errorInvalidText: 'Enter date in valid range',
+      context: context,
+      initialDate: selectedDateTime,
+      // Refer step 1
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    ))!;
+    if (picked != null && picked != selectedDateTime)
+      setState(() {
+        selectedDateTime = picked;
+      });
+  }
+}
+
+class Radio123 extends StatefulWidget {
+  @override
+  _Radio123State createState() => _Radio123State();
+}
+
+class _Radio123State extends State<Radio123> {
+  NameRadio nameRadio = NameRadio.mot;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          ListTile(
+            leading: Radio<NameRadio>(
+              value: NameRadio.mot,
+              onChanged: (NameRadio? value) {
+                setState(() {
+                  nameRadio = value!;
+                });
+              },
+              groupValue: nameRadio,
             ),
-          ],
-        )
+            title: Text("mot"),
+          ),
+          ListTile(
+            leading: Radio<NameRadio>(
+              value: NameRadio.hai,
+              onChanged: (NameRadio? value) {
+                setState(() {
+                  nameRadio = value!;
+                });
+              },
+              groupValue: nameRadio,
+            ),
+            title: Text("hai"),
+          )
+        ],
+      ),
     );
   }
 }
-a
+
+enum NameRadio {
+  mot,
+  hai,
+}
+
+class Slider123 extends StatefulWidget {
+  @override
+  _Slider123State createState() => _Slider123State();
+}
+
+class _Slider123State extends State<Slider123> {
+  double _value = 6;
+  RangeValues rangeValues = RangeValues(10, 30);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Slider(
+          divisions: 3,
+          inactiveColor: Colors.blue,
+          label: "123",
+          min: 0,
+          max: 100,
+          value: _value,
+          onChanged: (double newValue) {
+            setState(() {
+              _value = newValue;
+            });
+          },
+        ),
+        RangeSlider(
+            values: rangeValues,
+            onChanged: (RangeValues values) {
+              setState(() {
+                rangeValues = values;
+              });
+            })
+      ],
+    ));
+  }
+}
+
+class Switch123 extends StatefulWidget {
+  @override
+  _Switch123State createState() => _Switch123State();
+}
+
+class _Switch123State extends State<Switch123> {
+  bool _value = false;
+  String text = "";
+  TextEditingController _textEditingController = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Switch(
+                activeColor: Colors.yellow,
+                focusColor: Colors.red,
+                activeTrackColor: Colors.blue,
+
+                value: _value,
+                onChanged: (newValue) {
+                  setState(() {
+                    _value = newValue;
+                  });
+                }),
+            textFieldaaa(_textEditingController),
+          ],
+        ),
+      ),
+    );
+  }
+}
+Widget textFieldaaa(TextEditingController textEditingController){
+  return TextField(
+    controller: textEditingController,
+    decoration: InputDecoration(
+      prefixIcon: Icon(Icons.stream),
+      hintText: "abc",
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10)
+      ),
+    ),
+  );
+}
+
+
